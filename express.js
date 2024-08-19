@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-const routes = require('./routes/studyplannerRoutes');
+const routes = require('./routes/studyPlannerRoutes');
 
 dotenv.config();
 
