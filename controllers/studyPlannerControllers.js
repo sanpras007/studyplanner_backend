@@ -30,15 +30,31 @@ const updateStudyTime = async (req, res) => {
     }
 };
 
+// const markAsCompleted = async (req, res) => {
+//     try {
+//         const { id } = req.body;
+//         const updatedSubject = await studyPlannerModel.findByIdAndUpdate(id, { completed: true, dateCompleted: Date.now() }, { new: true });
+//         res.status(200).json({ "data": updatedSubject, "message": "Subject marked as completed", "err": "" });
+//     } catch (err) {
+//         res.status(500).json({ "data": "", "message": "Unable to mark subject as completed", "err": err.message });
+//     }
+// };
+
+
 const markAsCompleted = async (req, res) => {
     try {
-        const { id } = req.body;
-        const updatedSubject = await studyPlannerModel.findByIdAndUpdate(id, { completed: true, dateCompleted: Date.now() }, { new: true });
+        const { id, studyTime } = req.body;
+        const updatedSubject = await studyPlannerModel.findByIdAndUpdate(
+            id,
+            { completed: true, dateCompleted: Date.now(), studyTime },
+            { new: true }
+        );
         res.status(200).json({ "data": updatedSubject, "message": "Subject marked as completed", "err": "" });
     } catch (err) {
         res.status(500).json({ "data": "", "message": "Unable to mark subject as completed", "err": err.message });
     }
 };
+
 
 const deleteSubject = async (req, res) => {
     try {
@@ -50,10 +66,20 @@ const deleteSubject = async (req, res) => {
     }
 };
 
+const getCompletedSubjects = async (req, res) => {
+    try {
+        const completedSubjects = await studyPlannerModel.find({ completed: true });
+        res.status(200).json({ "data": completedSubjects, "message": "Completed subjects retrieved successfully", "err": "" });
+    } catch (err) {
+        res.status(500).json({ "data": "", "message": "Unable to retrieve completed subjects", "err": err.message });
+    }
+};
+
 module.exports = {
     addSubject,
     getSubjects,
     updateStudyTime,
     markAsCompleted,
-    deleteSubject
+    deleteSubject,
+    getCompletedSubjects //newly added routes ot be added....
 };
