@@ -1,21 +1,31 @@
+// server.js (or app.js)
 const express = require('express');
-const app = express();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
-app.use(express.urlencoded({ extended: true }));
+dotenv.config();
+
+const app = express();
+app.use(cors());
 app.use(express.json());
 
-const conn = require('./services/db');
-conn.dbConnection();
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected"))
+.catch((err) => console.log("Error connecting to MongoDB: ", err));
 
-const cors = require('cors');
-app.use(cors());
+// Route Definitions
+app.use('/api/v1/studyplanners', require('./routes/studyplannerRoutes'));
 
-
-const studyPlannerRoutes = require('./routes/studyPlannerRoutes');
-app.use('/api/v1/studyplanner', studyPlannerRoutes);
-
-app.use('/*', (req, res) => {
-    res.status(404).send("No route found");
+// Default Route
+app.get('/', (req, res) => {
+  res.send('API is running...');
 });
 
-app.listen(4000, () => console.log(`Server connected to port: 4000`));
+app.listen(4000, () => {
+  console.log(`Server connected to port: 4000`);
+});
