@@ -7,6 +7,10 @@ app.use(express.json());
 const conn = require('./services/db');
 conn.dbConnection();
 
+const cors = require('cors');
+app.use(cors());
+
+
 const studyPlannerRoutes = require('./routes/studyPlannerRoutes');
 app.use('/api/v1/studyplanner', studyPlannerRoutes);
 
