@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+const routes = require('./routes/studyplannerRoutes');
+
 dotenv.config();
 
 const app = express();
@@ -16,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URL)
 .catch((err) => console.log("Error connecting to MongoDB: ", err));
 
 // Route Definitions
-app.use('/api/v1/studyplanners', require('./routes/studyplannerRoutes'));
+app.use('/api/v1/studyplanners',routes);
 
 // Default Route
 app.get('/', (req, res) => {
