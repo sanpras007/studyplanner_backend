@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+
+
 const routes = require('./routes/studyPlannerRoutes');
 
 dotenv.config();
 
 const app = express();
-app.use(cors({
-  origin: 'http://localhost:3000'
-}));
+app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
