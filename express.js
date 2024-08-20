@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cors = require('cors');
+
 
 
 
@@ -11,7 +11,15 @@ const routes = require('./routes/studyPlannerRoutes');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with your React app's origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
+
 app.use(express.json());
 
 // Connect to MongoDB
