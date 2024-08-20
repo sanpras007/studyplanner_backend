@@ -13,11 +13,7 @@ dotenv.config();
 const app = express();
 const cors = require('cors');
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your React app's origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(cors());
 
 
 app.use(express.json());
