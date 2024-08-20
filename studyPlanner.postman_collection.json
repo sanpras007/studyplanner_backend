@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "586f403a-d331-4a3d-adbb-26461c04792d",
+		"name": "studyPlanner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37736697"
+	},
+	"item": [
+		{
+			"name": "addsubject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"subject\": \"malayalam\",\n    \"description\": \"Study algebra and calculus\",\n    \"studyTime\": 120,\n    \"completed\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://studyplanner-backend.vercel.app/api/v1/studyplanners/addSubject",
+					"protocol": "https",
+					"host": [
+						"studyplanner-backend",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"studyplanners",
+						"addSubject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get subject",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/v1/studyplanners/getSubjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"studyplanners",
+						"getSubjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "completed subject",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/v1/studyplanners/getCompletedSubject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"studyplanners",
+						"getCompletedSubject"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
